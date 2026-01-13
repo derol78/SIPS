@@ -1,0 +1,1143 @@
+[
+    {
+        "id": "39c06b7c9f8df7ae",
+        "type": "tab",
+        "label": "Load_shedding",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bef70177e7a8afc3",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "update",
+        "payloadType": "str",
+        "x": 150,
+        "y": 1360,
+        "wires": [
+            [
+                "4e99da56e33fbf73"
+            ]
+        ]
+    },
+    {
+        "id": "4e99da56e33fbf73",
+        "type": "mqtt out",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "shellies/vvb1/command",
+        "topic": "shellies/vvb1/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 490,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "bf489a38f8809ace",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "announce",
+        "payloadType": "str",
+        "x": 160,
+        "y": 1320,
+        "wires": [
+            [
+                "4e99da56e33fbf73"
+            ]
+        ]
+    },
+    {
+        "id": "c24178fccfdf8d64",
+        "type": "mqtt out",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "shellies/vvb1/relay/0/command",
+        "topic": "shellies/vvb1/relay/0/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 530,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "3966b503f38002a4",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 150,
+        "y": 1460,
+        "wires": [
+            [
+                "c24178fccfdf8d64"
+            ]
+        ]
+    },
+    {
+        "id": "120e5ceaa811489b",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 150,
+        "y": 1400,
+        "wires": [
+            [
+                "c24178fccfdf8d64"
+            ]
+        ]
+    },
+    {
+        "id": "38826d31c79a7b64",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "radiators",
+        "measurement": "homey/logic/radiators",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 860,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "478d88b9e9cd9ce8",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "vvb",
+        "measurement": "homey/logic/vvb",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 850,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "89c2030036599860",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "avf",
+        "measurement": "homey/logic/avf",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 850,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "edd5be04ad7d6402",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "homey/logic/vvb",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 940,
+        "wires": [
+            [
+                "478d88b9e9cd9ce8"
+            ]
+        ]
+    },
+    {
+        "id": "b50a8f2aee622525",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "homey/logic/radiators",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 300,
+        "y": 1000,
+        "wires": [
+            [
+                "38826d31c79a7b64"
+            ]
+        ]
+    },
+    {
+        "id": "cf40256811bbf059",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "homey/logic/avf",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 1060,
+        "wires": [
+            [
+                "89c2030036599860"
+            ]
+        ]
+    },
+    {
+        "id": "3afb678606291d0b",
+        "type": "mqtt out",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "topic": "shellies/rad1/relay/0/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 590,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "88db89357ae5260a",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 150,
+        "y": 1580,
+        "wires": [
+            [
+                "3afb678606291d0b"
+            ]
+        ]
+    },
+    {
+        "id": "6434a8610e81ea36",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1520,
+        "wires": [
+            [
+                "3afb678606291d0b"
+            ]
+        ]
+    },
+    {
+        "id": "5ae4c153f9878241",
+        "type": "mqtt out",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "topic": "shellies/avf/relay/0/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 580,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "e589be10b288bf06",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1680,
+        "wires": [
+            [
+                "5ae4c153f9878241"
+            ]
+        ]
+    },
+    {
+        "id": "f5d7a548ef6a6deb",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1620,
+        "wires": [
+            [
+                "5ae4c153f9878241"
+            ]
+        ]
+    },
+    {
+        "id": "176a2f133830ef40",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "spB_app1_v1/BT01-S1-F-S/NDATA/IoT_Edge_1/IoT_Device_1/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "a4650ad7c5a102fe",
+                "ba9448353a909702"
+            ]
+        ]
+    },
+    {
+        "id": "83500525af7fd3c6",
+        "type": "debug",
+        "z": "39c06b7c9f8df7ae",
+        "name": "Shelly relän Out",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "771ff2e9124fbe9f",
+        "type": "inject",
+        "z": "39c06b7c9f8df7ae",
+        "name": "Återställ allt.",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "reset_simulation",
+        "payload": "",
+        "payloadType": "str",
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "a4650ad7c5a102fe"
+            ]
+        ]
+    },
+    {
+        "id": "e8d53751aae915a5",
+        "type": "mqtt out",
+        "z": "39c06b7c9f8df7ae",
+        "name": "mqtt_out",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 1320,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d36ecf2ac7c1740c",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "shellies/+/relay/0",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 840,
+        "y": 520,
+        "wires": [
+            [
+                "b115b7e12cb30c24"
+            ]
+        ]
+    },
+    {
+        "id": "a1063bcc8c6c23ea",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "teslamate/cars/1/charge_current_request",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 420,
+        "wires": [
+            [
+                "a4650ad7c5a102fe",
+                "109073d184c4e206"
+            ]
+        ]
+    },
+    {
+        "id": "2eee6df1ce286517",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "teslamate/cars/1/state",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "a4650ad7c5a102fe"
+            ]
+        ]
+    },
+    {
+        "id": "bdcf0655ca0b723d",
+        "type": "delay",
+        "z": "39c06b7c9f8df7ae",
+        "name": "Tesla Rate Limit",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1120,
+        "y": 380,
+        "wires": [
+            [
+                "22f9a5cfd07b742a",
+                "e8d53751aae915a5"
+            ]
+        ]
+    },
+    {
+        "id": "86b8be95002ac374",
+        "type": "switch",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "tesla_control",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 950,
+        "y": 440,
+        "wires": [
+            [
+                "bdcf0655ca0b723d",
+                "aa7bf84cc5fb97dc"
+            ],
+            [
+                "e8d53751aae915a5"
+            ]
+        ]
+    },
+    {
+        "id": "22f9a5cfd07b742a",
+        "type": "debug",
+        "z": "39c06b7c9f8df7ae",
+        "name": "debug 48",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d0d142cef2f53c3c",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "teslamate/cars/1/charger_actual_current",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 700,
+        "wires": [
+            [
+                "a415c9b763e5a8a4"
+            ]
+        ]
+    },
+    {
+        "id": "aa7bf84cc5fb97dc",
+        "type": "debug",
+        "z": "39c06b7c9f8df7ae",
+        "name": "debug 49",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a4650ad7c5a102fe",
+        "type": "function",
+        "z": "39c06b7c9f8df7ae",
+        "name": "SIPS_v28",
+        "func": "// =========================================================================\n// SIPS_v28 - POWER PEAK SHAVING (BILEN INKLUDERAD)\n// =========================================================================\n// - v27: Sleep Fix\n// - v28: Bilen inkluderas i effektvakten (Power Limit).\n//        Sänker laddström eller stoppar vid hög total effekt (kW).\n\nconst TOPIC_STORAGE = \"system/sips/storage\"; \n\n// =========================================================================\n// 0. HANTERA INPUT, BACKUP & STATUS\n// =========================================================================\n\n// A. LÄS IN BACKUP VID START\nif (msg.topic === TOPIC_STORAGE) {\n    try {\n        let data = msg.payload;\n        if (typeof data === \"string\") data = JSON.parse(data);\n        if (data && data.c !== undefined && data.m !== undefined) {\n            flow.set(\"monthlySignalCount\", data.c);\n            flow.set(\"currentMonthIndex\", data.m);\n            let limit = 5000;\n            let pct = Math.round((data.c / limit) * 100);\n            node.status({fill: \"blue\", shape: \"ring\", text: `RESTORED: [${data.c}/${limit} (${pct}%)]`});\n        }\n    } catch(e) { node.error(\"Backup read error: \" + e.message); }\n    return null;\n}\n\n// B. MANUELL RESET\nif (msg.topic === \"reset_simulation\") {\n    flow.set(\"resourceStates\", undefined);\n    flow.set(\"simTemp\", 21.0); \n    flow.set(\"teslaState\", \"unknown\");\n    flow.set(\"teslaGeofence\", \"home\"); \n    flow.set(\"teslaAmps\", 0);\n    flow.set(\"teslaMaxAmps\", undefined); \n    flow.set(\"lastSentAmps\", -1); \n    flow.set(\"lastMetrics\", undefined);\n    flow.set(\"lastHomeyCmdTime\", 0);\n    \n    let nowM = new Date().getMonth();\n    flow.set(\"currentMonthIndex\", nowM);\n    flow.set(\"monthlySignalCount\", 0);\n    \n    let cleanBackup = { topic: TOPIC_STORAGE, payload: JSON.stringify({c: 0, m: nowM}), retain: true };\n    node.status({fill:\"blue\", shape:\"dot\", text:\"🔄 RESET & ERASE\"});\n    return [cleanBackup, null];\n}\n\n// C. STATUS UPPDATERINGAR FRÅN TESLAMATE\n\nif (msg.topic.includes(\"geofence\")) {\n    flow.set(\"teslaGeofence\", msg.payload);\n    return null;\n}\n\n// Case Insensitive Fix\nif (msg.topic.includes(\"state\")) {\n    let rawState = msg.payload.toString();\n    flow.set(\"teslaState\", rawState.toLowerCase()); \n    return null; \n}\n\nif (msg.topic.includes(\"charge_current_request\")) {\n    flow.set(\"teslaAmps\", parseFloat(msg.payload));\n    return null; \n}\nif (msg.topic.includes(\"charge_current_request_max\")) {\n    let maxAmps = parseFloat(msg.payload);\n    flow.set(\"teslaMaxAmps\", maxAmps);\n    return null; \n}\n\nif (!msg.payload || !msg.payload.metrics) return null;\n\n\n// =========================================================================\n// 1. KONFIGURATION\n// =========================================================================\nconst DRY_RUN = false; \nconst MONTHLY_LIMIT = 5000;\nconst CRITICAL_CUTOFF = 4900;\n\n// Säkring & Effekt\nconst FUSE_SOFT_LIMIT = 20;       \nconst FUSE_CRITICAL_LIMIT = 25;   \nconst SAFETY_BUFFER = 1.0; \nconst POWER_LIMIT = flow.get(\"powerLimit\") || 11000; // Gräns för effektavgift (Watt)\nconst POWER_RESET_BUFFER = 3000;  \n\n// Tesla\nconst TESLA_MIN_AMPS = 5;         \nconst TESLA_DEFAULT_MAX = 13;   \nconst TESLA_HOME_NAME = \"home\"; \nconst TESLA_PHASES = [1, 2, 3]; \nconst API_COOLDOWN_MINS = 3;    \n\n// Topics\nconst TOPIC_HOMEY_SET = \"homey/input/tesla_set_amps\";\nconst TOPIC_HOMEY_STOP = \"homey/input/tesla_stop\";\nconst TOPIC_HOMEY_START = \"homey/input/tesla_start\";\n\n// VIKTIGT: shedOrder avgör vem som ryker först vid effekttopp.\n// 1 = Ryker först (Minst viktig / Lättast att reglera)\n// Just nu är Tesla nr 1, vilket är bra för effekttoppar.\nlet resources = [\n    { id: \"tesla\", type: \"tesla_homey\", shedOrder: 1, name: \"Tesla\", phases: TESLA_PHASES },\n    { id: \"vvb\", type: \"mqtt\", shedOrder: 2, topic: \"shellies/vvb1/relay/0/command\", name: \"VVB\", phases: [2,3] },\n    { id: \"rad\", type: \"mqtt\", shedOrder: 3, topic: \"shellies/rad1/relay/0/command\", name: \"Rad\", phases: [1,2,3] },\n    { id: \"avf\", type: \"mqtt\", shedOrder: 4, topic: \"shellies/avf1/relay/0/command\", name: \"Avf\", phases: [1] }\n];\n\n\n// =========================================================================\n// 2. STATE & SETUP\n// =========================================================================\nlet now = new Date();\nlet currentMonthIndex = flow.get(\"currentMonthIndex\");\nlet monthlyCount = flow.get(\"monthlySignalCount\") || 0;\n\nif (currentMonthIndex === undefined || now.getMonth() !== currentMonthIndex) {\n    monthlyCount = 0;\n    flow.set(\"monthlySignalCount\", 0);\n    flow.set(\"currentMonthIndex\", now.getMonth());\n}\n\nlet stateStore = flow.get(\"resourceStates\") || {}; \nlet teslaState = flow.get(\"teslaState\") || \"unknown\";\nlet teslaCurrentAmps = flow.get(\"teslaAmps\") || 0; \nlet teslaGeofence = flow.get(\"teslaGeofence\");\nif (teslaGeofence === undefined) teslaGeofence = TESLA_HOME_NAME;\n\nlet teslaMaxAmps = flow.get(\"teslaMaxAmps\");\nif (teslaMaxAmps === undefined || teslaMaxAmps === null) {\n    teslaMaxAmps = TESLA_DEFAULT_MAX;\n}\n\nlet lastActionTime = flow.get(\"lastActionTime\") || 0;\nlet lastHomeyCmdTime = flow.get(\"lastHomeyCmdTime\") || 0;\nlet nowTs = Date.now();\n\nlet m = msg.payload.metrics;\nlet currents = { 1: m.Current_L1, 2: m.Current_L2, 3: m.Current_L3 };\nlet maxCurrent = Math.max(currents[1], currents[2], currents[3]);\nlet totalPower = m.Power_Total;\n\n// Temp simulering\nlet simTemp = flow.get(\"simTemp\") || 21.0; \nlet lastSimTime = flow.get(\"lastSimTime\") || nowTs;\nlet timeDiff = (nowTs - lastSimTime) / 3600000.0; if (timeDiff > 1) timeDiff = 1;\nlet radIsOn = (stateStore[\"rad\"] === \"on\" || stateStore[\"rad\"] === undefined); \nif (radIsOn) { simTemp += (3.0 * timeDiff); if (simTemp > 21.0) simTemp = 21.0; } \nelse { simTemp -= (2.0 * timeDiff); if (simTemp < 16.0) simTemp = 16.0; }\nflow.set(\"simTemp\", simTemp); flow.set(\"lastSimTime\", nowTs);\nlet resRad = resources.find(r => r.id === \"rad\");\nif (simTemp < 19.0) { resRad.shedOrder = 99; resRad.name = \"Radiatorer (PRIO)\"; }\nelse { resRad.shedOrder = 3; resRad.name = \"Radiatorer\"; }\n\n\n// =========================================================================\n// 3. KOMMUNIKATION MED HOMEY\n// =========================================================================\nfunction sendHomey(topic, payload, reason, isCritical) {\n    if (monthlyCount >= CRITICAL_CUTOFF && !isCritical) {\n        statusMsg += \"BUDGET-STOP \";\n        return false;\n    }\n    if (topic === TOPIC_HOMEY_SET && parseInt(payload) === teslaCurrentAmps) return false; \n\n    mqttOut.push({ topic: topic, payload: payload });\n    if (topic === TOPIC_HOMEY_SET) flow.set(\"lastSentAmps\", parseInt(payload));\n    flow.set(\"lastHomeyCmdTime\", nowTs);\n    monthlyCount++;\n    flow.set(\"monthlySignalCount\", monthlyCount);\n    \n    let backupPayload = JSON.stringify({ c: monthlyCount, m: new Date().getMonth() });\n    mqttOut.push({ topic: TOPIC_STORAGE, payload: backupPayload, retain: true });\n    \n    statusMsg += reason + \" \";\n    return true;\n}\n\n\n// =========================================================================\n// 4. LOGIK MOTOR\n// =========================================================================\nresources.forEach(r => { r.status = stateStore[r.id] !== undefined ? stateStore[r.id] : null; });\nlet mqttOut = [];\nlet statusMsg = \"\";\nlet statusColor = \"green\";\nlet actionTaken = false;\nlet timeSinceLast = nowTs - lastActionTime;\nlet minsSinceHomey = (nowTs - lastHomeyCmdTime) / 60000;\n\nfunction isTeslaActive() {\n    let charging = (teslaState === \"charging\" || teslaState === \"starting\");\n    let isHome = (teslaGeofence === TESLA_HOME_NAME);\n    return charging && isHome; \n}\n\nfunction resourceAffectsOverloadedPhase(resource, overloadedPhases) {\n    return resource.phases.some(phase => overloadedPhases.includes(phase));\n}\n\n// A. KRITISK\nif (maxCurrent >= FUSE_CRITICAL_LIMIT) {\n    statusColor = \"red\";\n    let criticalPhases = Object.keys(currents).filter(ph => currents[ph] >= FUSE_CRITICAL_LIMIT).map(Number);\n    statusMsg += \"KRITISK! \";\n    resources.filter(r => resourceAffectsOverloadedPhase(r, criticalPhases)).forEach(r => {\n        if (r.type === \"mqtt\" && r.status !== \"off\") {\n            mqttOut.push({ topic: r.topic, payload: \"off\" });\n            stateStore[r.id] = \"off\";\n            statusMsg += \"Klipp: \" + r.name;\n            actionTaken = true;\n        } else if (r.type === \"tesla_homey\" && isTeslaActive()) {\n            if (sendHomey(TOPIC_HOMEY_STOP, \"true\", \"STOPP Tesla\", true)) actionTaken = true;\n        }\n    });\n}\n\n// B. MJUK (Smart Step-Down)\nelse if (maxCurrent >= FUSE_SOFT_LIMIT) {\n    statusColor = \"orange\";\n    let timerLimit = DRY_RUN ? 500 : 3000;\n    if (timeSinceLast > timerLimit) {\n        let highPhases = Object.keys(currents).filter(ph => currents[ph] >= FUSE_SOFT_LIMIT).map(Number);\n        let sortedResources = resources.sort((a, b) => a.shedOrder - b.shedOrder);\n\n        for (let r of sortedResources) {\n            if (actionTaken) break;\n            if (resourceAffectsOverloadedPhase(r, highPhases)) {\n                if (r.type === \"mqtt\") {\n                    if (r.status !== \"off\") {\n                        mqttOut.push({ topic: r.topic, payload: \"off\" });\n                        stateStore[r.id] = \"off\";\n                        statusMsg += \"Stänger \" + r.name;\n                        actionTaken = true;\n                    }\n                } else if (r.type === \"tesla_homey\" && isTeslaActive()) {\n                    if (teslaCurrentAmps <= TESLA_MIN_AMPS) continue;\n                    let relevantCurrent = 0;\n                    r.phases.forEach(p => { if (currents[p] > relevantCurrent) relevantCurrent = currents[p]; });\n                    let overload = relevantCurrent - FUSE_SOFT_LIMIT; \n                    let reduceBy = overload + SAFETY_BUFFER; \n                    let newTarget = Math.floor(teslaCurrentAmps - reduceBy);\n                    if (newTarget < TESLA_MIN_AMPS) newTarget = TESLA_MIN_AMPS;\n                    if (newTarget < teslaCurrentAmps) {\n                        if (sendHomey(TOPIC_HOMEY_SET, String(newTarget), \"Tesla->\" + newTarget + \"A\", false)) actionTaken = true;\n                    }\n                }\n            }\n        }\n    }\n}\n\n// C. EFFEKT (KW Begränsning - Nu med Tesla-styrning v28)\nelse if (totalPower > POWER_LIMIT) {\n    statusColor = \"yellow\";\n    let timerLimit = DRY_RUN ? 500 : 5000;\n    if (timeSinceLast > timerLimit) {\n        \n        // Sortera ALLA resurser (inkl Tesla) efter shedOrder\n        let sorted = resources.sort((a, b) => a.shedOrder - b.shedOrder); \n        \n        for (let r of sorted) {\n            if (actionTaken) break; \n            \n            // Hantera MQTT-laster\n            if (r.type === \"mqtt\" && r.status !== \"off\") {\n                mqttOut.push({ topic: r.topic, payload: \"off\" });\n                stateStore[r.id] = \"off\";\n                statusMsg += \"Effekt: \" + r.name;\n                actionTaken = true;\n            } \n            \n            // Hantera Tesla vid Effekttopp\n            else if (r.type === \"tesla_homey\" && isTeslaActive()) {\n                 // 1. Försök sänka strömmen först\n                 if (teslaCurrentAmps > TESLA_MIN_AMPS) {\n                     let newTarget = teslaCurrentAmps - 1; // Sänk 1A i taget vid effektvarning\n                     if (sendHomey(TOPIC_HOMEY_SET, String(newTarget), \"Effekt->Sänk bil\", false)) {\n                         actionTaken = true;\n                     }\n                 }\n                 // 2. Om vi ligger på minimum och ändå har för hög effekt -> Stoppa\n                 else {\n                     // Lägg in en liten buffert så vi inte stoppar för 50W överträdelse\n                     let overload = totalPower - POWER_LIMIT;\n                     if (overload > 500) { \n                         if (sendHomey(TOPIC_HOMEY_STOP, \"true\", \"Effekt->Stopp bil\", false)) {\n                             actionTaken = true;\n                         }\n                     }\n                 }\n            }\n        }\n    }\n}\n\n// D. ÅTERSTÄLLNING (Recovery)\nelse if (maxCurrent < (FUSE_SOFT_LIMIT - 2.0) && totalPower < (POWER_LIMIT - POWER_RESET_BUFFER)) {\n    let timerLimit = DRY_RUN ? 500 : 10000;\n    if (timeSinceLast > timerLimit) {\n        let recoveryResources = resources.sort((a, b) => b.shedOrder - a.shedOrder); \n        for (let r of recoveryResources) {\n            if (actionTaken) break; \n            \n            // 1. MQTT Laster\n            if (r.type === \"mqtt\" && r.status !== \"on\") {\n                mqttOut.push({ topic: r.topic, payload: \"on\" });\n                stateStore[r.id] = \"on\";\n                statusMsg += \"Åter: \" + r.name;\n                actionTaken = true;\n            }\n            \n            // 2. Tesla Hantering\n            else if (r.type === \"tesla_homey\") {\n                // Fall A: Bilen laddar\n                if (isTeslaActive()) {\n                     if (minsSinceHomey > API_COOLDOWN_MINS && teslaCurrentAmps < teslaMaxAmps) {\n                         let available = FUSE_SOFT_LIMIT - maxCurrent; \n                         let safeIncrease = available - SAFETY_BUFFER; \n                         if (safeIncrease >= 1) {\n                             let potential = Math.floor(teslaCurrentAmps + safeIncrease);\n                             if (potential > teslaMaxAmps) potential = teslaMaxAmps;\n                             if (potential > teslaCurrentAmps) {\n                                 if (sendHomey(TOPIC_HOMEY_SET, String(potential), \"Tesla->\" + potential + \"A\", false)) actionTaken = true;\n                             }\n                         }\n                     } else if (teslaCurrentAmps < teslaMaxAmps) {\n                         if (statusMsg === \"\") statusMsg += \"Väntar (\" + (API_COOLDOWN_MINS - minsSinceHomey).toFixed(1) + \"m) \";\n                     }\n                }\n                // Fall B: Auto-Restart\n                else if ([\"stopped\", \"asleep\", \"online\"].includes(teslaState) && teslaGeofence === TESLA_HOME_NAME) {\n                     let available = FUSE_SOFT_LIMIT - maxCurrent;\n                     if (minsSinceHomey > API_COOLDOWN_MINS && available > (TESLA_MIN_AMPS + SAFETY_BUFFER)) {\n                         if (sendHomey(TOPIC_HOMEY_START, \"true\", \"STARTA Tesla\", false)) {\n                             sendHomey(TOPIC_HOMEY_SET, String(TESLA_MIN_AMPS), \"Set \" + TESLA_MIN_AMPS + \"A\", false);\n                             actionTaken = true;\n                         }\n                     }\n                }\n            }\n        }\n        if (!actionTaken && statusMsg === \"\") statusMsg += \"Normal (\" + maxCurrent.toFixed(1) + \"A)\";\n    }\n}\n\n// OUTPUT & STATUS\nflow.set(\"resourceStates\", stateStore);\nif (actionTaken) flow.set(\"lastActionTime\", nowTs);\n\nlet lm = { rad: stateStore[\"rad\"]===\"on\"?1:0, vvb: stateStore[\"vvb\"]===\"on\"?1:0, avf: stateStore[\"avf\"]===\"on\"?1:0 };\nlet lastMetrics = flow.get(\"lastMetrics\") || {};\nif (JSON.stringify(lm) !== JSON.stringify(lastMetrics)) {\n    if(lm.rad !== lastMetrics.rad) mqttOut.push({ topic: \"homey/logic/radiators\", payload: lm.rad });\n    if(lm.vvb !== lastMetrics.vvb) mqttOut.push({ topic: \"homey/logic/vvb\", payload: lm.vvb });\n    if(lm.avf !== lastMetrics.avf) mqttOut.push({ topic: \"homey/logic/avf\", payload: lm.avf });\n    flow.set(\"lastMetrics\", lm);\n}\n\nlet ledPayload = \"normal\";\nlet anyLoadOff = resources.some(r => r.type === \"mqtt\" && stateStore[r.id] === \"off\");\nif (statusColor === \"red\") ledPayload = \"critical\"; \nelse if (statusColor === \"orange\") ledPayload = \"warning\";  \nelse if (anyLoadOff) ledPayload = \"recovery\"; \nif (ledPayload !== (flow.get(\"lastLedStatus\") || \"\")) {\n    mqttOut.push({ topic: \"homey/system/state\", payload: ledPayload });\n    flow.set(\"lastLedStatus\", ledPayload);\n}\n\nlet geoStatus = (teslaGeofence === TESLA_HOME_NAME) ? \"H\" : \"A\";\nlet budgetPercent = Math.round((monthlyCount / MONTHLY_LIMIT) * 100);\nlet budgetTxt = ` [API: ${monthlyCount}/${MONTHLY_LIMIT}]`;\nlet maxTxt = ` [BilMax: ${teslaMaxAmps}A] [${geoStatus}]`; \n\nif (mqttOut.length === 0) {\n    if (maxCurrent < (FUSE_SOFT_LIMIT - 2.0)) {\n        let txt = (ledPayload === \"recovery\") ? \"Väntar...\" : statusMsg;\n        node.status({fill: \"green\", shape: \"dot\", text: txt + budgetTxt + maxTxt});\n    }\n    return null;\n}\n\nnode.status({fill: statusColor, shape: \"ring\", text: \"ACTION: \" + statusMsg + budgetTxt});\nreturn [mqttOut, null];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 440,
+        "wires": [
+            [
+                "86b8be95002ac374",
+                "83500525af7fd3c6"
+            ]
+        ]
+    },
+    {
+        "id": "98181347994a5618",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "system/sips/storage",
+        "topic": "system/sips/storage",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [
+                "a4650ad7c5a102fe",
+                "9176158554403678"
+            ]
+        ]
+    },
+    {
+        "id": "75b819f896f7f3d1",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "teslamate/cars/1/charge_current_request_max",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "a4650ad7c5a102fe",
+                "013bd3d5f3a54260"
+            ]
+        ]
+    },
+    {
+        "id": "109073d184c4e206",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "tesla/charge/current/request",
+        "measurement": "tesla/charge/current/request",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 920,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7ed3504619b0b32e",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "tesla/control_counter",
+        "measurement": "tesla/control_counter",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 900,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "013bd3d5f3a54260",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "tesla/charge_current_request_max",
+        "measurement": "tesla/charge_current_request_max",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 940,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a415c9b763e5a8a4",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "tesla/charger_actual_current",
+        "measurement": "tesla/charger_actual_current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 920,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "9176158554403678",
+        "type": "function",
+        "z": "39c06b7c9f8df7ae",
+        "name": "function 17",
+        "func": "// 1. Kontrollera om payload är text (sträng) och gör om till objekt\nif (typeof msg.payload === \"string\") {\n    msg.payload = JSON.parse(msg.payload);\n}\n\n// 2. Plocka ut värdet för \"c\" och gör det till den nya payloaden\nmsg.payload = msg.payload.c; \n\n// Nu är msg.payload bara siffran 93\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "7ed3504619b0b32e"
+            ]
+        ]
+    },
+    {
+        "id": "7332694355038538",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "teslamate/cars/1/geofence",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "a4650ad7c5a102fe"
+            ]
+        ]
+    },
+    {
+        "id": "ba9448353a909702",
+        "type": "function",
+        "z": "39c06b7c9f8df7ae",
+        "name": "function 18",
+        "func": "// 1. Säkra upp att vi har ett objekt\nlet data = msg.payload;\nif (typeof data === \"string\") {\n    try {\n        data = JSON.parse(data);\n    } catch (e) {\n        node.warn(\"Kunde inte parsa JSON för Power_Total\");\n        return null;\n    }\n}\n\n// 2. Kontrollera att sökvägen finns\nif (data.metrics && data.metrics.Power_Total !== undefined) {\n    // 3. Extrahera värdet och tvinga till flyttal (float)\n    let power = parseFloat(data.metrics.Power_Total);\n    \n    // 4. Skicka vidare endast om det är ett giltigt tal\n    if (!isNaN(power)) {\n        msg.payload = power;\n        return msg;\n    }\n}\n\n// Om något saknas, skicka inget vidare (tystar fel i Influx)\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 80,
+        "wires": [
+            [
+                "8531b08f1bd198a7"
+            ]
+        ]
+    },
+    {
+        "id": "8531b08f1bd198a7",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/123/power",
+        "measurement": "RPI_shelly/3em/123/power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1020,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "27258bd37e1d1d63",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "charging_state",
+        "topic": "teslamate/cars/1/charging_state",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "a4650ad7c5a102fe"
+            ]
+        ]
+    },
+    {
+        "id": "c815a86085247178",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "fuse_temp_L1",
+        "measurement": "fuse_temp_L1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 880,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "dd43a9aa13685d8f",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "system/sips/fuse_temp_L1",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 760,
+        "wires": [
+            [
+                "c815a86085247178"
+            ]
+        ]
+    },
+    {
+        "id": "44b141f285bd6c03",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "system/sips/fuse_temp_L3",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 880,
+        "wires": [
+            [
+                "933bae4c7d90ffc7"
+            ]
+        ]
+    },
+    {
+        "id": "933bae4c7d90ffc7",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "fuse_temp_L3",
+        "measurement": "fuse_temp_L3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 880,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "6e0c797daf4842e9",
+        "type": "mqtt in",
+        "z": "39c06b7c9f8df7ae",
+        "name": "",
+        "topic": "system/sips/fuse_temp_L2",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 820,
+        "wires": [
+            [
+                "0370fb563eab1dd3"
+            ]
+        ]
+    },
+    {
+        "id": "0370fb563eab1dd3",
+        "type": "influxdb out",
+        "z": "39c06b7c9f8df7ae",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "fuse_temp_L2",
+        "measurement": "fuse_temp_L2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 880,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b115b7e12cb30c24",
+        "type": "function",
+        "z": "39c06b7c9f8df7ae",
+        "name": "update state_v2",
+        "func": "// =================================================================\n// UPDATE STATE & FAST FORWARD\n// =================================================================\n// 1. Läser in status direkt från Shelly (när knappen trycks).\n// 2. Uppdaterar SIPS globala minne direkt (slipper vänta på loop).\n// 3. Skickar vidare till Grafana/Homey direkt (slipper lagg i graf).\n// =================================================================\n\n// 1. KONFIGURATION: Karta mellan Shelly-namn och SIPS-ID\nconst idMap = {\n    \"vvb1\": \"vvb\",\n    \"rad1\": \"rad\",\n    \"avf1\": \"avf\" \n};\n\n// 2. IDENTIFIERA ENHET FRÅN TOPIC\n// Topic format in: \"shellies/avf1/relay/0\"\nlet parts = msg.topic.split(\"/\");\nlet deviceId = parts[1]; // Här hamnar \"avf1\", \"rad1\" eller \"vvb1\"\nlet sipsId = idMap[deviceId];\n\n// Om enheten inte finns i vår karta (t.ex. en lampa vi inte styr), avbryt.\nif (!sipsId) return null;\n\n// Läs payload (\"on\" eller \"off\")\nlet actualStatus = msg.payload.toString(); \n\n// 3. UPPDATERA SIPS MINNE (Global Context)\n// Detta är kritiskt för att SIPS ska veta statusen omedelbart\nlet stateStore = flow.get(\"resourceStates\") || {};\n\n// Vi uppdaterar bara om det behövs, eller för säkerhets skull\nif (stateStore[sipsId] !== actualStatus) {\n    stateStore[sipsId] = actualStatus;\n    flow.set(\"resourceStates\", stateStore);\n    \n    // Debug-utskrift så du ser att det fungerar i sidopanelen\n    node.warn(`🔄 MANUELL SYNK: ${sipsId} (fysisk: ${deviceId}) ändrades till ${actualStatus}`);\n}\n\n// 4. SKICKA TILL GRAFANA / HOMEY DIREKT\n// Vi bygger om meddelandet för att passa \"homey/logic\"-formatet\n\n// Ny topic (t.ex. homey/logic/avf)\nmsg.topic = \"homey/logic/\" + sipsId;\n\n// Konvertera payload: \"on\" -> 1, \"off\" -> 0\nmsg.payload = (actualStatus === \"on\") ? 1 : 0;\n\n// VIKTIGA FLAGGOR\nmsg.retain = true; // Sparar värdet i Mosquitto. Grafana visar rätt direkt vid omstart.\nmsg.qos = 1;       // Garanterar att meddelandet kommer fram.\n\n// Skicka vidare till MQTT Out\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 520,
+        "wires": [
+            [
+                "e8d53751aae915a5"
+            ]
+        ]
+    },
+    {
+        "id": "1349df3b490f6f25",
+        "type": "function",
+        "z": "39c06b7c9f8df7ae",
+        "name": "update state",
+        "func": "// Hämta topic och payload från det inkommande meddelandet\n// Topic ser ut typ: \"shellies/rad1/relay/0\"\n// Payload är \"on\" eller \"off\"\n\nlet parts = msg.topic.split(\"/\");\nlet deviceId = parts[1]; // Detta blir \"rad1\", \"vvb1\" eller \"avf1\"\nlet actualStatus = msg.payload.toString(); // \"on\" eller \"off\"\n\n// Hämta det globala minnet\nlet stateStore = flow.get(\"resourceStates\") || {};\n\n// Kolla om statusen skiljer sig från vad vi trodde\nif (stateStore[deviceId] !== actualStatus) {\n    // UPPDATERA KARTAN MED VERKLIGHETEN!\n    stateStore[deviceId] = actualStatus;\n    \n    // Spara tillbaka till minnet\n    flow.set(\"resourceStates\", stateStore);\n    \n    // Logga att vi rättade till kartan (bra för debug)\n    node.warn(\"🔄 SYNK: \" + deviceId + \" ändrades manuellt till \" + actualStatus);\n}\n\nreturn null; // Skicka inget vidare, vi uppdaterade bara minnet",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa6a33cd942a9c83",
+        "type": "mqtt-broker",
+        "name": "RPI",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8d24e520361b7e2c",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "sensors",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    }
+]
