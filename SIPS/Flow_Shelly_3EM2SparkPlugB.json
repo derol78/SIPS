@@ -1,0 +1,602 @@
+[
+    {
+        "id": "a68663fe60bb4e0d",
+        "type": "tab",
+        "label": "EDGE_1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4cf1fdcd8e884d57",
+        "type": "mqtt in",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "topic": "shellies/shelly1/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 100,
+        "wires": [
+            [
+                "f8aeb53afdc5e067",
+                "0fbdd47942a9d3f5"
+            ]
+        ]
+    },
+    {
+        "id": "f8aeb53afdc5e067",
+        "type": "function",
+        "z": "a68663fe60bb4e0d",
+        "name": "Samla & Buffra",
+        "func": "// --- KONFIGURATION ---\nvar contextKey = 'shelly_buffer_bt01'; \n\n// Hämta befintligt minne eller skapa nytt\nvar buffer = flow.get(contextKey) || { \"L1\": {}, \"L2\": {}, \"L3\": {} };\n\n// Parsa Shelly Topic: shellies/shelly1/emeter/0/power\nvar parts = msg.topic.split(\"/\");\n// OBS: Index kan variera beroende på om du har prefix i topic\n// Justera dessa siffror om din topic ser annorlunda ut än standard.\nvar channel = parts[3]; // Kanal: 0, 1, 2\nvar type = parts[4];    // Typ: power, voltage, energy, etc.\nvar val = parseFloat(msg.payload);\n\n// Mappa Shelly-kanal till Fas-namn\nvar phaseMap = { \"0\": \"L1\", \"1\": \"L2\", \"2\": \"L3\" };\nvar phase = phaseMap[channel];\n\n// Om datan är relevant, spara i bufferten\nif (phase && type) {\n    buffer[phase][type] = val;\n    flow.set(contextKey, buffer);\n    \n    // Skicka en \"PING\" vidare för att trigga 250ms-timern\n    return { payload: \"PING\" };\n}\n\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "a56b3713b6329ce8"
+            ]
+        ],
+        "info": "Nod 1: \"Samla & Buffra\"\r\nPlacering: Mellan MQTT In och Trigger Node. Syfte: Läser in rådata, sorterar in det i rätt fack i minnet (L1, L2, L3) och skickar en signal vidare för att starta timern."
+    },
+    {
+        "id": "a56b3713b6329ce8",
+        "type": "trigger",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
+        "duration": "250",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 500,
+        "y": 100,
+        "wires": [
+            [
+                "fa4af144d1146ab5"
+            ]
+        ]
+    },
+    {
+        "id": "fa4af144d1146ab5",
+        "type": "function",
+        "z": "a68663fe60bb4e0d",
+        "name": "Paketera & Publicera NDATA",
+        "func": "// --- KONFIGURATION (BUSINESS & INFRA) ---\nvar namespace = \"spB_app1_v1\";\nvar functionalPosition = \"BT01-S1-F-S\"; // BUSINESS: Den unika mätpunkten\n\nvar gatewayId = \"IoT_Edge_1\";   // INFRA: Gatewayens neutrala namn\nvar sensorId = \"IoT_Device_1\"; // INFRA: Sensorns neutrala namn\n\nvar msgType = \"NDATA\";\n\n// --- HÄMTA DATA ---\nvar buffer = flow.get('shelly_buffer_bt01');\nif (!buffer) return null;\n\n// Beräkna totaler\nvar totalPower = (buffer.L1.power || 0) + (buffer.L2.power || 0) + (buffer.L3.power || 0);\n\n// --- BYGG TOPIC ---\n// Struktur: Namespace / PROCESSPUNKT / Verb / HÅRDVARA / SENSOR\nmsg.topic = namespace + \"/\" + functionalPosition + \"/\" + msgType + \"/\" + gatewayId + \"/\" + sensorId;\n\n// --- BYGG PAYLOAD ---\nmsg.payload = {\n    \"timestamp\": new Date().getTime(),\n    \"metrics\": {\n        // Unikt ID = Topic-Prefix + Denna Key\n        \"Voltage_L1\": buffer.L1.voltage,\n        \"Voltage_L2\": buffer.L2.voltage,\n        \"Voltage_L3\": buffer.L3.voltage,\n\n        \"Current_L1\": buffer.L1.current,\n        \"Current_L2\": buffer.L2.current,\n        \"Current_L3\": buffer.L3.current,\n\n        \"Power_L1\": buffer.L1.power,\n        \"Power_L2\": buffer.L2.power,\n        \"Power_L3\": buffer.L3.power,\n\n        \"Power_Total\": parseFloat(totalPower.toFixed(2)),\n\n        // Exempel på energi om det finns i bufferten\n        \"Energy_Total\": buffer.L1.total ? parseFloat(((buffer.L1.total + buffer.L2.total + buffer.L3.total) / 1000).toFixed(1)) : 0\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 100,
+        "wires": [
+            [
+                "dad2bdea81059b34",
+                "477fd9ae7c14f4fe",
+                "1c2d7de87dc6a682"
+            ]
+        ]
+    },
+    {
+        "id": "0fbdd47942a9d3f5",
+        "type": "trigger",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "op1": "",
+        "op2": "OFFLINE",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "180",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "a4141bc8cb3d2647"
+            ]
+        ]
+    },
+    {
+        "id": "a4141bc8cb3d2647",
+        "type": "function",
+        "z": "a68663fe60bb4e0d",
+        "name": "NDEATH-flödet",
+        "func": "// --- KONFIGURATION ---\nvar namespace          = \"spB_app1_v1\";\nvar functionalPosition = \"BT01-S1-F-S\"; \nvar gatewayId          = \"IoT_Edge_1\";\nvar sensorId           = \"IoT_Device_1\";\n\n// --- LOGIK FÖR ATT UPPTÄCKA FEL ---\n// 1. \"OFFLINE\" = Från Watchdog-triggern (Timeout 60s)\n// 2. false / \"false\" = Från Shelly LWT (Direkt avbrott)\nif (msg.payload === \"OFFLINE\" || msg.payload === false || msg.payload === \"false\") {\n    \n    // Bestäm felorsak baserat på vad som kom in\n    var failReason = \"Device Timeout (60s silence)\";\n    var failDesc   = \"Ingen data mottagen på 60 sekunder\";\n\n    // Om det var ett direkt LWT (false)\n    if (msg.payload === false || msg.payload === \"false\") {\n        failReason = \"Device Disconnected (LWT)\";\n        failDesc   = \"Enheten rapporterade 'Last Will' (Strömbortfall/Krasch)\";\n    }\n\n    // --- BYGG TOPIC ---\n    msg.topic = namespace + \"/\" + functionalPosition + \"/NDEATH/\" + gatewayId + \"/\" + sensorId;\n    \n    // --- BYGG PAYLOAD ---\n    msg.payload = {\n        \"timestamp\": new Date().getTime(),\n        \"bdSeq\": 0,\n        \"meta\": {\n            \"status\": \"OFFLINE\",\n            \"reason\": failReason,\n            \"description\": failDesc,\n            \"raw_trigger\": msg.payload // Bra för felsökning (visar vad som triggade)\n        }\n    };\n    \n    // Viktigt: Retain = true så systemet minns felet\n    msg.retain = true;\n    \n    return msg;\n}\n\n// Om payload är något annat (t.ex. \"online\" eller true), gör inget\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "dad2bdea81059b34",
+                "143af973ab5374de",
+                "1c2d7de87dc6a682"
+            ]
+        ],
+        "info": "Nod 1: \"Samla & Buffra\"\r\nPlacering: Mellan MQTT In och Trigger Node. Syfte: Läser in rådata, sorterar in det i rätt fack i minnet (L1, L2, L3) och skickar en signal vidare för att starta timern."
+    },
+    {
+        "id": "389d74349e0b719a",
+        "type": "mqtt in",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "topic": "shellies/shelly1/info",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "4088675a2c2c6258"
+            ]
+        ]
+    },
+    {
+        "id": "4364261c37b23907",
+        "type": "mqtt in",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "topic": "shellies/shelly1/announce",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "4088675a2c2c6258"
+            ]
+        ]
+    },
+    {
+        "id": "c8a4009f58ffd56a",
+        "type": "inject",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "update",
+        "payloadType": "str",
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "e931b1b051e0dd3e"
+            ]
+        ]
+    },
+    {
+        "id": "e931b1b051e0dd3e",
+        "type": "mqtt out",
+        "z": "a68663fe60bb4e0d",
+        "name": "shellies/shellyplug-s-80646F819F72/command",
+        "topic": "shellies/vvb1/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 540,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "04f073c42f2c3664",
+        "type": "inject",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "announce",
+        "payloadType": "str",
+        "x": 140,
+        "y": 440,
+        "wires": [
+            [
+                "e931b1b051e0dd3e"
+            ]
+        ]
+    },
+    {
+        "id": "4088675a2c2c6258",
+        "type": "function",
+        "z": "a68663fe60bb4e0d",
+        "name": "NBIRTH-flödet",
+        "func": "// --- KONFIGURATION ---\nvar namespace          = \"spB_app1_v1\";\nvar functionalPosition = \"BT01-S1-F-S\"; \nvar gatewayId          = \"IoT_Edge_1\";\nvar sensorId           = \"IoT_Device_1\";\n\n// Rådata från Shelly Announce\nvar info = msg.payload; \n\n// --- BYGG TOPIC ---\nmsg.topic = namespace + \"/\" + functionalPosition + \"/NBIRTH/\" + gatewayId + \"/\" + sensorId;\n\n// --- BYGG PAYLOAD ---\nmsg.payload = {\n    \"timestamp\": new Date().getTime(),\n    // Initiera mätvärden (Nolla dem)\n    \"metrics\": {\n        \"Voltage_L1\": 0, \"Voltage_L2\": 0, \"Voltage_L3\": 0,\n        \"Current_L1\": 0, \"Current_L2\": 0, \"Current_L3\": 0,\n        \"Power_Total\": 0\n    },\n    // HÄR lägger vi den produktspecifika asset-datan\n    \"meta\": {\n        \"status\": \"ONLINE\",\n        \"role\": sensorId,\n        \"manufacturer\": \"Shelly\",\n        \"model\": info.model,      // Hämtat från enheten\n        \"mac\": info.mac,          // Hämtat från enheten\n        \"ip\": info.ip,            // Hämtat från enheten\n        \"fw\": info.fw_ver\n    }\n};\n\nmsg.retain = true;\n\n// Returnera TVÅ meddelanden:\n// 1. NBIRTH till MQTT\n// 2. \"ONLINE\"-signal till Watchdogen (Output 2, eller skicka allt till Output 1 om du filtrerar i triggern)\nreturn [msg, { payload: \"ONLINE\" }];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 300,
+        "wires": [
+            [
+                "dad2bdea81059b34",
+                "8845d2b60a376168",
+                "1c2d7de87dc6a682"
+            ]
+        ],
+        "info": "Nod 1: \"Samla & Buffra\"\r\nPlacering: Mellan MQTT In och Trigger Node. Syfte: Läser in rådata, sorterar in det i rätt fack i minnet (L1, L2, L3) och skickar en signal vidare för att starta timern."
+    },
+    {
+        "id": "bee0ce790295459f",
+        "type": "inject",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 180,
+        "wires": [
+            [
+                "0fbdd47942a9d3f5"
+            ]
+        ]
+    },
+    {
+        "id": "72a04d013df04447",
+        "type": "mqtt in",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "topic": "shellies/shelly1/online",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "fa6a33cd942a9c83",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "9f920299c2620917"
+            ]
+        ]
+    },
+    {
+        "id": "9f920299c2620917",
+        "type": "switch",
+        "z": "a68663fe60bb4e0d",
+        "name": "Om false, så->NDEATH",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "a4141bc8cb3d2647"
+            ]
+        ]
+    },
+    {
+        "id": "dad2bdea81059b34",
+        "type": "mqtt out",
+        "z": "a68663fe60bb4e0d",
+        "name": "OT-DIP: spB_app1_v1/BT01-S1-F-S/VERB/IoT_Edge_1/IoT_Device_1",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8b9416087e3c999a",
+        "x": 1130,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "143af973ab5374de",
+        "type": "debug",
+        "z": "a68663fe60bb4e0d",
+        "name": "OT-DIP: NDEATH",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8845d2b60a376168",
+        "type": "debug",
+        "z": "a68663fe60bb4e0d",
+        "name": "OT-DIP: NBIRTH",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "477fd9ae7c14f4fe",
+        "type": "debug",
+        "z": "a68663fe60bb4e0d",
+        "name": "OT-DIP: NDATA",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9547ec3f8da04bca",
+        "type": "mqtt out",
+        "z": "a68663fe60bb4e0d",
+        "name": "shellies/vvb1/relay/0/command",
+        "topic": "shellies/vvb1/relay/0/command",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 510,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "727e9a35ab31316b",
+        "type": "inject",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "9547ec3f8da04bca"
+            ]
+        ]
+    },
+    {
+        "id": "a3292553e2a591c1",
+        "type": "inject",
+        "z": "a68663fe60bb4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 130,
+        "y": 520,
+        "wires": [
+            [
+                "9547ec3f8da04bca"
+            ]
+        ]
+    },
+    {
+        "id": "1c2d7de87dc6a682",
+        "type": "mqtt out",
+        "z": "a68663fe60bb4e0d",
+        "name": "spB_LS_v1/BT01-S1-F-S/VERB/IoT_Edge_1/IoT_Device_1",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 1140,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fa6a33cd942a9c83",
+        "type": "mqtt-broker",
+        "name": "RPI",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8b9416087e3c999a",
+        "type": "mqtt-broker",
+        "name": "OT-DIP",
+        "broker": "10.99.98.101",
+        "port": "8883",
+        "tls": "3212d6acb6a45a40",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "spB_app1_v1/BT01-S1-F-S/NBIRTH/IoT_Edge_1",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "{\"status\": \"Gateway Online\"}",
+        "birthMsg": {},
+        "closeTopic": "spB_app1_v1/BT01-S1-F-S/NDEATH/IoT_Edge_1",
+        "closeQos": "1",
+        "closeRetain": "true",
+        "closePayload": "{\"status\": \"Gateway Connection Closed\"}",
+        "closeMsg": {},
+        "willTopic": "spB_app1_v1/BT01-S1-F-S/NDEATH/IoT_Edge_1",
+        "willQos": "1",
+        "willRetain": "true",
+        "willPayload": "{\"status\": \"Gateway Offline\"}",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3212d6acb6a45a40",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "david.crt",
+        "keyname": "david.key",
+        "caname": "ca.crt",
+        "servername": "iot-poc.ucn.distribution.vattenfall.com",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]
