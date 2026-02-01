@@ -1,0 +1,1272 @@
+[
+    {
+        "id": "3eed00b8c7a9ef73",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "993618586782759e",
+        "type": "group",
+        "z": "3eed00b8c7a9ef73",
+        "name": "1. INPUT LAYER (V12.2 - Type Safe)",
+        "style": {
+            "stroke": "#92d04f",
+            "fill": "#f3f9f0",
+            "label": true
+        },
+        "nodes": [
+            "ec87205e3c049379",
+            "5cd54fc65b04c10a",
+            "fa6557eb6a2b8fa8",
+            "d65612789305f3ff",
+            "f52aca7ea50ae77b",
+            "5b6ca60559792007",
+            "336df0324b7df042",
+            "edef1cba375fab59",
+            "d51bd7fe61f36c76",
+            "52901f18e7e86df8",
+            "8dcc98c581eff4ec",
+            "4e8bfed6d53c7bfa",
+            "7bb95e948d7e50a1"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 512,
+        "h": 562
+    },
+    {
+        "id": "cf8bf0b14e7e4aa4",
+        "type": "group",
+        "z": "3eed00b8c7a9ef73",
+        "name": "2. LOGIC LAYER (V12.2 - Resource Oriented)",
+        "style": {
+            "stroke": "#4f8dd0",
+            "fill": "#e3f2fd",
+            "label": true
+        },
+        "nodes": [
+            "2b88557c7db8812d",
+            "e83459563e16abdb",
+            "3de6acad5750e825",
+            "a820781f81b641a5",
+            "a52beea9e11f07c7",
+            "24bbf6da4dc3bccc",
+            "a8726aa5f03d58ef"
+        ],
+        "x": 554,
+        "y": 19,
+        "w": 692,
+        "h": 262
+    },
+    {
+        "id": "5192e703de6729fe",
+        "type": "group",
+        "z": "3eed00b8c7a9ef73",
+        "name": "3. OUTPUT LAYER (Sequential + RBE Router)",
+        "style": {
+            "stroke": "#d04f4f",
+            "fill": "#f9f0f0",
+            "label": true
+        },
+        "nodes": [
+            "465db2ea43b9bb53",
+            "86691c8d33a02da5",
+            "fa8fa39964d2d08e",
+            "f2183dc2955be820"
+        ],
+        "x": 1414,
+        "y": 59,
+        "w": 832,
+        "h": 202
+    },
+    {
+        "id": "d4250ce404ec61b6",
+        "type": "group",
+        "z": "3eed00b8c7a9ef73",
+        "name": "4. LOGGING LAYER (InfluxDB - Type Fixed)",
+        "style": {
+            "stroke": "#999999",
+            "fill": "#f0f0f0",
+            "label": true
+        },
+        "nodes": [
+            "0e5b7cfa1c0ca96c",
+            "5e6e102b39c894df",
+            "6c022f6774a4cc71",
+            "6977b02bb44346ff",
+            "50168a41b8f03124",
+            "06b187955acb7b86",
+            "63ca7cd6919362ff",
+            "0fddf1d214b7d01d",
+            "f4994743ff5ad18b",
+            "d73df6f2d0a9ded5",
+            "2a2cdbd33c3741bf",
+            "eeb2e66b55d708c4",
+            "57687425891251a8",
+            "88d2c26357c74df6",
+            "f32dacf6932d3251",
+            "70af6cc2a74a0b8c",
+            "13a8b24575162bc0",
+            "611df54fa9d4dae1",
+            "ccb70e46e6a58ebf",
+            "3d6eb74669a18ef6",
+            "cd97a78245ed03b5",
+            "6c59a443ece883cd",
+            "a247090378a4af0d",
+            "4e3e690d57655ee6",
+            "4bca7de47a6d27af",
+            "0c71c68108e3e3d0",
+            "2817ca236b7f0e41",
+            "c76b79cbfb75d583"
+        ],
+        "x": 1014,
+        "y": 519,
+        "w": 1262,
+        "h": 662
+    },
+    {
+        "id": "ec87205e3c049379",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Grid Metrics",
+        "topic": "spB_app1_v1/BT01-S1-F-S/NDATA/IoT_Edge_1/IoT_Device_1/#",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "7bb95e948d7e50a1",
+                "d73df6f2d0a9ded5",
+                "f32dacf6932d3251",
+                "70af6cc2a74a0b8c"
+            ]
+        ]
+    },
+    {
+        "id": "5cd54fc65b04c10a",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla State",
+        "topic": "teslamate/cars/1/state",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "fa6557eb6a2b8fa8",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla Geofence",
+        "topic": "teslamate/cars/1/geofence",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "d65612789305f3ff",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla Cur Req",
+        "topic": "teslamate/cars/1/charge_current_request",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "7bb95e948d7e50a1",
+                "2817ca236b7f0e41"
+            ]
+        ]
+    },
+    {
+        "id": "f52aca7ea50ae77b",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla Cur Max",
+        "topic": "teslamate/cars/1/charge_current_request_max",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "7bb95e948d7e50a1",
+                "c76b79cbfb75d583"
+            ]
+        ]
+    },
+    {
+        "id": "5b6ca60559792007",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Homey Loads",
+        "topic": "homey/logic/+",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "336df0324b7df042",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Shelly Feedback",
+        "topic": "shellies/+/relay/0",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "edef1cba375fab59",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla Battery %",
+        "topic": "teslamate/cars/1/battery_level",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "d51bd7fe61f36c76",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Tesla Limit %",
+        "topic": "teslamate/cars/1/charge_limit_soc",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "52901f18e7e86df8",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Charging State",
+        "topic": "teslamate/cars/1/charging_state",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 460,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "8dcc98c581eff4ec",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Actual (Restore)",
+        "topic": "teslamate/cars/1/charger_actual_current",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "7bb95e948d7e50a1",
+                "0c71c68108e3e3d0"
+            ]
+        ]
+    },
+    {
+        "id": "4e8bfed6d53c7bfa",
+        "type": "mqtt in",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "IN: Storage",
+        "topic": "system/sips/storage",
+        "qos": "1",
+        "broker": "fa6a33cd942a9c83",
+        "inputs": 0,
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "7bb95e948d7e50a1"
+            ]
+        ]
+    },
+    {
+        "id": "7bb95e948d7e50a1",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "993618586782759e",
+        "name": "INPUT MAPPER V12",
+        "func": "// INPUT MAPPER V12 (Added Charge Limit SOC)\nlet sips = flow.get(\"sips_state\");\n\n// --- 1. SJÄLVLÄKANDE SKYDDSMEKANISM ---\nif (!sips || !sips.loads || !sips.grid) {\n    sips = sips || {};\n    if (!sips.tesla) sips.tesla = { amps: 0, actual_amps: 0, state: \"unknown\", geofence: \"unknown\", charge_limit: 80 };\n    if (!sips.loads) sips.loads = { \n        vvb: { status: \"off\", prio: 2, phases: [2,3] }, \n        rad: { status: \"off\", prio: 3, phases: [1,2,3] }, \n        avf: { status: \"off\", prio: 4, phases: [1] } \n    };\n    if (!sips.grid) sips.grid = { l1: 0, l2: 0, l3: 0, power: 0, energy_used_hour: 0 };\n    if (!sips.fuse) sips.fuse = { l1: 0, l2: 0, l3: 0, max: 0 };\n    if (!sips.api) sips.api = { count: 0, month: new Date().getMonth() };\n}\n\nlet trigger = false;\n\n// --- 2. RESTORE MEMORY & REALITY SYNC ---\nif (msg.topic.includes(\"charger_actual_current\")) {\n    let actual = parseFloat(msg.payload);\n    sips.tesla.actual_amps = actual;\n    if (sips.tesla.amps === 0 && actual > 1) sips.tesla.amps = Math.round(actual);\n}\n\n// --- 3. GRID & ENERGY ---\nelse if (msg.payload && msg.payload.metrics) {\n    let m = msg.payload.metrics;\n    if (!sips.grid) sips.grid = {};\n    sips.grid.l1 = m.Current_L1;\n    sips.grid.l2 = m.Current_L2;\n    sips.grid.l3 = m.Current_L3;\n    sips.grid.power = m.Power_Total;\n    \n    if (m.Energy_Total !== undefined) {\n        let currentTotalKwh = parseFloat(m.Energy_Total);\n        let now = new Date();\n        let currentHour = now.getHours();\n        let energyState = flow.get(\"sips_energy_state\") || { startEnergy: currentTotalKwh, currentHour: -1 };\n        if (energyState.currentHour !== currentHour) {\n            energyState.currentHour = currentHour;\n            energyState.startEnergy = currentTotalKwh;\n        }\n        let used = currentTotalKwh - energyState.startEnergy;\n        if (used < 0) { used = 0; energyState.startEnergy = currentTotalKwh; }\n        flow.set(\"sips_energy_state\", energyState);\n        sips.grid.energy_used_hour = used;\n        sips.grid.minutes_passed = now.getMinutes();\n    }\n    trigger = true;\n}\n\n// --- 4. TESLA INPUTS ---\nelse if (msg.topic.includes(\"charge_current_request\") && !msg.topic.includes(\"max\")) sips.tesla.amps = parseFloat(msg.payload);\nelse if (msg.topic.includes(\"charge_current_request_max\")) sips.tesla.max_amps_dynamic = parseFloat(msg.payload);\nelse if (msg.topic.endsWith(\"/state\")) sips.tesla.state = msg.payload.toString().toLowerCase();\nelse if (msg.topic.includes(\"charging_state\")) sips.tesla.charging_state = msg.payload.toString(); \nelse if (msg.topic.includes(\"plugged_in\")) sips.tesla.plugged_in = (msg.payload === true || msg.payload === \"true\");\nelse if (msg.topic.includes(\"geofence\")) sips.tesla.geofence = msg.payload.toString();\nelse if (msg.topic.includes(\"battery_level\")) sips.tesla.battery_level = parseFloat(msg.payload);\nelse if (msg.topic.includes(\"charge_limit_soc\")) sips.tesla.charge_limit = parseFloat(msg.payload);\n\n// --- 5. STORAGE & HOMEY ---\nelse if (msg.topic === \"system/sips/storage\") {\n    let data = msg.payload;\n    if (typeof data === \"string\") { try { data = JSON.parse(data); } catch(e) {} }\n    if (data && data.c !== undefined) { sips.api.count = data.c; sips.api.month = data.m; }\n}\nelse if (msg.topic.includes(\"homey/logic/\")) {\n    // Generisk laddning av laster\n    if (msg.topic.includes(\"vvb\")) sips.loads.vvb.status = (msg.payload === 1 || msg.payload === true || msg.payload === \"on\") ? \"on\" : \"off\";\n    if (msg.topic.includes(\"radiators\")) sips.loads.rad.status = (msg.payload === 1 || msg.payload === true || msg.payload === \"on\") ? \"on\" : \"off\";\n    if (msg.topic.includes(\"avf\")) sips.loads.avf.status = (msg.payload === 1 || msg.payload === true || msg.payload === \"on\") ? \"on\" : \"off\";\n}\nelse if (msg.topic.includes(\"shellies/\")) {\n    if (msg.topic.includes(\"vvb1\")) sips.loads.vvb.status = msg.payload;\n    if (msg.topic.includes(\"rad1\")) sips.loads.rad.status = msg.payload;\n    if (msg.topic.includes(\"avf1\")) sips.loads.avf.status = msg.payload;\n}\n\nflow.set(\"sips_state\", sips);\n\nif (trigger) {\n    msg.sips = sips;\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "2b88557c7db8812d"
+            ]
+        ]
+    },
+    {
+        "id": "2b88557c7db8812d",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "MODEL: Fuse (I2t - Fixed)",
+        "func": "let sips = msg.sips;\nlet config = flow.get(\"sips_config\") || { fuse_limit_critical: 120 };\n\nconst FUSE_SIZE = 20;\nconst TAU = 200;\nconst DT = 1.0;\n\nfunction calc(old_temp, current_amps) {\n    let load_ratio = current_amps / FUSE_SIZE;\n    let target_temp = load_ratio * load_ratio * 100;\n    let alpha = 1 - Math.exp(-DT / TAU);\n    return old_temp + alpha * (target_temp - old_temp);\n}\n\nif (!sips.fuse) sips.fuse = { l1: 0, l2: 0, l3: 0, max: 0 };\n\nsips.fuse.l1 = calc(sips.fuse.l1, sips.grid.l1);\nsips.fuse.l2 = calc(sips.fuse.l2, sips.grid.l2);\nsips.fuse.l3 = calc(sips.fuse.l3, sips.grid.l3);\n\n// SKYDDSLOGIK: Direkt detektion av extrem överlast (>50A)\nlet max_current_real = Math.max(sips.grid.l1, sips.grid.l2, sips.grid.l3);\n\nif (max_current_real > (FUSE_SIZE * 2.5)) {\n    // Instant Protection: Sätt temp till något som garanterat triggar Critical\n    let panicTemp = (config.fuse_limit_critical || 120) + 5;\n    sips.fuse.max = Math.max(sips.fuse.l1, sips.fuse.l2, sips.fuse.l3, panicTemp);\n} else {\n    sips.fuse.max = Math.max(sips.fuse.l1, sips.fuse.l2, sips.fuse.l3);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 60,
+        "wires": [
+            [
+                "e83459563e16abdb"
+            ]
+        ]
+    },
+    {
+        "id": "e83459563e16abdb",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "MODEL: House",
+        "func": "// Termisk modell för huset\nlet sips = msg.sips;\nlet now = Date.now();\n\nif (!sips.sim) sips.sim = { temp: 21.0, lastUpdate: now };\n\nlet dt = (now - sips.sim.lastUpdate) / 3600000.0;\nif (dt > 1) dt = 1;\n\nif (sips.loads.rad.status === \"on\") {\n    sips.sim.temp += (3.0 * dt);\n    if (sips.sim.temp > 21) sips.sim.temp = 21;\n} else {\n    sips.sim.temp -= (2.0 * dt);\n    if (sips.sim.temp < 16) sips.sim.temp = 16;\n}\nsips.sim.lastUpdate = now;\n\n// Prio-logik för elementen\nsips.loads.rad.prio = (sips.sim.temp < 19.0) ? 99 : 3;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 60,
+        "wires": [
+            [
+                "3de6acad5750e825"
+            ]
+        ]
+    },
+    {
+        "id": "3de6acad5750e825",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "RESOURCE MANAGER V12.1",
+        "func": "// RESOURCE MANAGER V12.2 (Robust Connection Logic)\nlet sips = msg.sips;\nsips.resources = sips.resources || {};\n\n// --- 1. DEFINIERA TESLA OBJEKTET ---\nlet tesla = sips.tesla || {};\nlet teslaRes = {\n    id: \"tesla\",\n    type: \"controllable_load\",\n    priority: 15,\n    min_power: 3464, // 5A * 400V P = U * I  *sqrt(3)\n    phases: [1,2,3],\n    available: false,\n    reason: \"Initializing\"\n};\n\n// --- 2. VALIDERINGS-LOGIK ---\nlet isHome = (tesla.geofence === \"home\");\n\n// FIX V12.2: Robust detektering av kabel\n// Om charging_state är något annat än \"Disconnected\" så sitter kabeln i.\n// Detta fungerar även om 'plugged_in' saknas i MQTT-datan.\nlet state = tesla.charging_state || \"Disconnected\";\nlet isConnectedState = (state === \"Charging\" || state === \"Stopped\" || state === \"Complete\" || state === \"PluggedIn\");\n\nlet isConnected = (tesla.plugged_in === true || tesla.plugged_in === \"true\" || isConnectedState);\n\nlet isOnline = (tesla.state === \"online\" || tesla.state === \"charging\" || tesla.state === \"suspended\");\nlet isNotFull = (state !== \"Complete\");\n\n// SOC Check (Om vi har data)\nlet socRoom = true;\nif (tesla.charge_limit && tesla.battery_level) {\n    if (tesla.battery_level >= tesla.charge_limit) socRoom = false;\n}\n\n// --- 3. BESLUTSTRÄD ---\nif (!isHome) {\n    teslaRes.available = false;\n    teslaRes.reason = \"Away\";\n} else if (!isConnected) {\n    teslaRes.available = false;\n    teslaRes.reason = \"Disconnected\";\n} else if (!isOnline) {\n    teslaRes.available = false; // Kanske tillåta 'suspended' om vi vill väcka?\n    teslaRes.reason = \"Offline/Sleep\";\n} else if (!isNotFull || !socRoom) {\n    teslaRes.available = false;\n    teslaRes.reason = \"Battery Full\";\n} else {\n    // Allt ser bra ut!\n    teslaRes.available = true;\n    teslaRes.reason = \"Ready\";\n}\n\n// Spara ner i det strukturerade objektet\nsips.resources.tesla = teslaRes;\n\n// --- 4. ANDRA RESURSER (VVB etc) ---\n// Hämtar prio från SIPS-objektet (som satts av Strategy/Init)\n// Vi sätter default om det saknas\nlet vvbPrio = sips.loads.vvb.prio !== undefined ? sips.loads.vvb.prio : 50;\nlet radPrio = sips.loads.rad.prio !== undefined ? sips.loads.rad.prio : 30;\nlet avfPrio = sips.loads.avf.prio !== undefined ? sips.loads.avf.prio : 10;\n\nsips.resources.vvb = { id: \"vvb\", available: true, priority: vvbPrio };\nsips.resources.rad = { id: \"rad\", available: true, priority: radPrio };\nsips.resources.avf = { id: \"avf\", available: true, priority: avfPrio };\n\nflow.set(\"sips_state\", sips);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 120,
+        "wires": [
+            [
+                "a820781f81b641a5"
+            ]
+        ]
+    },
+    {
+        "id": "a820781f81b641a5",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "STRATEGY V13.5",
+        "func": "// STRATEGY V13.6 - \"Phase Aware\" Regulation\n// Fixar jojo-effekt vid 3-fasladdning genom att räkna rätt på P = U * I * faser\nlet sips = msg.sips;\nlet plan = [];\n\n// --- HÄMTA CONFIG ---\nlet config = flow.get(\"sips_config\");\nif (!config || !config.prio) {\n    node.error(\"Config missing! Run INIT.\");\n    return null;\n}\n\n// Hämta Overrides & Historik\nlet overrides = flow.get(\"sips_overrides\") || {};\nsips.history = sips.history || {};\nlet now = Date.now();\n\n// --- SKYDDSPARAMETRAR ---\nconst MIN_OFF_MS = (config.protection ? config.protection.min_off_minutes : 10) * 60000;\nconst EV_REG_MS = (config.protection ? config.protection.ev_regulation_sec : 30) * 1000;\n\n// Hämta last-data\nlet lConf = config.loads_config || {\n    vvb: { watts: 3000, phases: [1, 2, 3] },\n    rad: { watts: 3500, phases: [1, 2, 3] },\n    avf: { watts: 500, phases: [1] }\n};\n\nconst VVB_EST_WATTS = lConf.vvb.watts;\nconst RAD_EST_WATTS = lConf.rad.watts;\nconst AVF_EST_WATTS = lConf.avf.watts;\n\n// --- 1. TID & MODE ---\nlet month = new Date().getMonth() + 1;\nlet hour = new Date().getHours();\nlet isWinter = (month === 12 || month <= 2);\nlet isHighLoadTime = (hour >= 6 && hour < 21);\nlet isGhostMode = isWinter && isHighLoadTime;\nlet targetKw = isGhostMode ? config.target_ghost : config.target_normal;\n\n// --- 2. BUDGET & MÄTVÄRDEN ---\nlet usedKwh = sips.grid.energy_used_hour || 0;\nlet minutesPassed = Math.max(sips.grid.minutes_passed || 1, 1);\nlet kwhLeft = targetKw - usedKwh;\nlet maxAllowedPowerKw = (kwhLeft / ((60 - minutesPassed) / 60.0)) - 0.5;\nmaxAllowedPowerKw = Math.max(Math.min(maxAllowedPowerKw, 13.5), 0);\nconst POWER_LIMIT = maxAllowedPowerKw * 1000;\nlet totalPower = sips.grid.power;\n\nsips.log = { limit: POWER_LIMIT, target: targetKw, used: usedKwh, ghost: isGhostMode ? 1 : 0 };\n\n// --- 3. PRIORITERING ---\nlet rTesla = sips.resources.tesla;\nlet rVvb = sips.resources.vvb;\nlet rRad = sips.resources.rad;\nlet rAvf = sips.resources.avf;\nlet houseTemp = sips.sim ? sips.sim.temp : 21.0;\nlet panicCharge = (sips.tesla.battery_level < 20);\n\n// A. Grundprioritering\nif (isGhostMode) {\n    let p = config.prio.ghost;\n    let limits = config.temp_limits || { critical: 19.0, cold: 20.0 };\n    if (houseTemp < limits.critical) rRad.priority = p.rad_critical;\n    else if (houseTemp < limits.cold) rRad.priority = p.rad_cold;\n    else rRad.priority = p.rad_warm;\n\n    rAvf.priority = p.avf; rVvb.priority = p.vvb;\n    rTesla.priority = panicCharge ? p.tesla_panic : p.tesla_normal;\n} else {\n    let p = config.prio.normal;\n    rRad.priority = p.rad; rAvf.priority = p.avf;\n    if (panicCharge) { rTesla.priority = p.tesla_panic; rVvb.priority = p.vvb_yield; }\n    else { rVvb.priority = p.vvb_prio; rTesla.priority = p.tesla_normal; }\n}\n\n// B. Dynamisk EV-Prioritet\nif (sips.tesla.amps > config.tesla_min) rTesla.priority = 40;\nelse rTesla.priority = 90;\n\n// C. Override-Prioritering\nif (overrides.rad_until > now) rRad.priority = 200;\nif (overrides.vvb_until > now) rVvb.priority = 200;\nif (overrides.car_until > now) rTesla.priority = 200;\n\n// Sätt ihop resurslistan (Nu med Tesla-faser från config)\n// VIKTIGT: Här hämtas antal faser för att kunna räkna effekt korrekt senare\nlet teslaPhases = config.tesla_phases || [1];\nlet carMinWatts = config.tesla_min * 230 * teslaPhases.length; \n\nlet resources = [\n    { ...rTesla, active: (sips.tesla.charging_state === \"Charging\" || sips.tesla.actual_amps > 1), type: \"dynamic\", phases: teslaPhases },\n    { ...rVvb, active: (sips.loads.vvb.status === \"on\"), type: \"binary\", watts: VVB_EST_WATTS, phases: lConf.vvb.phases },\n    { ...rRad, active: (sips.loads.rad.status === \"on\"), type: \"binary\", watts: RAD_EST_WATTS, phases: lConf.rad.phases },\n    { ...rAvf, active: (sips.loads.avf.status === \"on\"), type: \"binary\", watts: AVF_EST_WATTS, phases: lConf.avf.phases }\n];\nresources.sort((a, b) => a.priority - b.priority);\n\n// --- 4. ACTION LOGIC ---\nlet shedMode = false;\nlet statusText = `${isGhostMode ? \"GHOST\" : \"LOW\"} (${targetKw}kW) `;\n\nif (overrides.rad_until > now) statusText = \"BOOST RAD\";\nif (overrides.vvb_until > now) statusText = \"BOOST VVB\";\n\n// A. FORCE OFF\nresources.forEach(r => {\n    if (r.priority < 0 && r.active) {\n        plan.push({ id: r.id, action: r.type === \"dynamic\" ? \"stop\" : \"off\" });\n        sips.history[r.id].lastStop = now;\n    }\n});\n\n// B. SHEDDING (Minska last)\nlet overloadL1 = sips.fuse.l1 > config.fuse_limit_warning;\nlet overloadL2 = sips.fuse.l2 > config.fuse_limit_warning;\nlet overloadL3 = sips.fuse.l3 > config.fuse_limit_warning;\nlet totalOverload = totalPower > POWER_LIMIT;\n\nif (totalOverload || overloadL1 || overloadL2 || overloadL3) {\n    shedMode = true;\n    let reductionNeeded = 0;\n    let isCritical = sips.fuse.max > config.fuse_limit_critical;\n\n    if (isCritical) {\n        reductionNeeded = 99000; statusText = \"CRITICAL PANIC\";\n    } else {\n        reductionNeeded = Math.max(totalPower - POWER_LIMIT, 2000);\n    }\n\n    for (let r of resources) {\n        if (!r.active) continue;\n        if (r.priority >= 200) continue;\n\n        let contributesToProblem = false;\n        if (totalOverload) contributesToProblem = true;\n        else {\n            let hitsL1 = overloadL1 && r.phases.includes(1);\n            let hitsL2 = overloadL2 && r.phases.includes(2);\n            let hitsL3 = overloadL3 && r.phases.includes(3);\n            if (hitsL1 || hitsL2 || hitsL3) contributesToProblem = true;\n        }\n\n        if (!contributesToProblem) continue;\n\n        if (r.type === \"dynamic\") {\n            if (!r.available) continue;\n\n            // Fysik-kalkyl: Hur många watt är 1 Ampere för just denna last?\n            let rPhaseCount = (r.phases && r.phases.length > 0) ? r.phases.length : 1;\n            let wattsPerAmp = 230 * rPhaseCount; \n\n            // SOFT LANDING\n            if (isCritical) {\n                if (sips.tesla.amps > config.tesla_min) {\n                    plan.push({ id: r.id, action: \"set\", value: config.tesla_min });\n                    sips.history[r.id].lastRegulate = now;\n                    reductionNeeded = 0;\n                    continue;\n                }\n            } else {\n                if (now - sips.history[r.id].lastRegulate < EV_REG_MS) continue;\n            }\n\n            // --- FIX V13.6: Räkna med wattsPerAmp istället för hårdkodat 230 ---\n            let ampsToReduce = Math.ceil(reductionNeeded / wattsPerAmp);\n            if (ampsToReduce < 1) ampsToReduce = 1;\n            \n            let newAmps = sips.tesla.amps - ampsToReduce;\n\n            if (newAmps < config.tesla_min) {\n                plan.push({ id: r.id, action: \"stop\" });\n                reductionNeeded -= (sips.tesla.amps * wattsPerAmp);\n                sips.history[r.id].lastStop = now;\n                break;\n            } else {\n                plan.push({ id: r.id, action: \"set\", value: newAmps });\n                sips.history[r.id].lastRegulate = now;\n                reductionNeeded = 0;\n            }\n        } else {\n            // Binary load\n            plan.push({ id: r.id, action: \"off\" });\n            sips.history[r.id].lastStop = now;\n            break;\n        }\n        if (reductionNeeded <= 0) break;\n    }\n}\n// C. RECOVERY (Öka last)\nelse {\n    let coolDownDrop = config.fuse_hysteresis_temp || 5;\n    let coolDownLimit = (config.fuse_limit_warning || 110) - coolDownDrop;\n\n    if (sips.fuse.max > coolDownLimit) {\n        statusText = `COOLING (${Math.round(sips.fuse.max)}°C > ${coolDownLimit})`;\n    }\n    else {\n        let wattsAvailable = POWER_LIMIT - totalPower;\n        let startOrder = [...resources].sort((a, b) => b.priority - a.priority);\n        let actionTaken = false;\n\n        for (let r of startOrder) {\n            if (actionTaken && r.type === \"binary\") continue;\n            if (r.priority < 0 || r.active) continue;\n\n            let lastStop = sips.history[r.id] ? sips.history[r.id].lastStop : 0;\n            if ((now - lastStop) < MIN_OFF_MS) continue;\n\n            if (r.type === \"binary\") {\n                let requiredBuffer = config.hysteresis_buffer || 1200;\n                if (wattsAvailable > (r.watts + requiredBuffer) && r.available) {\n                    plan.push({ id: r.id, action: \"on\" });\n                    sips.history[r.id].lastStart = now;\n                    wattsAvailable -= r.watts;\n                    actionTaken = true;\n                }\n            }\n            else if (r.id === \"tesla\" && r.available) {\n                // Beräkna start-effekt baserat på faser\n                let rPhaseCount = (r.phases && r.phases.length > 0) ? r.phases.length : 1;\n                let startWatts = (config.tesla_min * 230 * rPhaseCount); \n                let req = startWatts + config.safety_margin;\n\n                if (wattsAvailable > req) {\n                    plan.push({ id: \"tesla\", action: \"start\" });\n                    plan.push({ id: \"tesla\", action: \"set\", value: config.tesla_min });\n                    sips.history[r.id].lastStart = now;\n                    sips.tesla.amps = config.tesla_min;\n                    wattsAvailable -= startWatts;\n                }\n            }\n        }\n\n        // Smart Turbo (Reglera upp EV)\n        let car = resources.find(r => r.id === \"tesla\");\n        if (car && car.active && car.available && wattsAvailable > config.hysteresis_buffer) {\n            if (now - sips.history[car.id].lastRegulate > EV_REG_MS) {\n                \n                // --- FIX V13.6: Phase Aware Turbo ---\n                let carPhaseCount = (car.phases && car.phases.length > 0) ? car.phases.length : 1;\n                let wattsPerAmp = 230 * carPhaseCount;\n\n                let minStep = config.tesla_step_min !== undefined ? config.tesla_step_min : 1;\n                let distToMax = config.tesla_max - sips.tesla.amps;\n                \n                // Räkna ut headroom med rätt spänning/fas-faktor\n                let headroomAmps = Math.floor((wattsAvailable - config.safety_margin) / wattsPerAmp);\n                \n                // SÄKERHET: Om 3-fas, var lite mer konservativ (ta bara 80% av utrymmet för att undvika spikar)\n                if (carPhaseCount > 1) {\n                    headroomAmps = Math.floor(headroomAmps * 0.9);\n                }\n\n                let requiredHeadroom = (distToMax < minStep) ? 1 : minStep;\n\n                if (headroomAmps >= requiredHeadroom) {\n                    // Mjukare acceleration: ta inte allt utrymme direkt\n                    let step = Math.max(requiredHeadroom, Math.floor(headroomAmps / 2)); \n                    let newAmps = Math.min(sips.tesla.amps + step, config.tesla_max);\n                    \n                    if (newAmps > sips.tesla.amps) {\n                        plan.push({ id: \"tesla\", action: \"set\", value: newAmps });\n                        sips.history[car.id].lastRegulate = now;\n                    }\n                }\n            }\n        }\n    }\n}\n\nif (plan.find(p => p.id === \"tesla\")) sips.api.count++;\n\nlet sysState = \"normal\";\nif (sips.fuse.max > config.fuse_limit_critical) sysState = \"critical\";\nelse if (shedMode || sips.fuse.max > config.fuse_limit_warning) sysState = \"warning\";\nelse if (resources.some(r => r.priority > 0 && !r.active && r.available)) sysState = \"recovery\";\n\nflow.set(\"sips_state\", sips);\nmsg.plan = plan;\nmsg.systemState = sysState;\nnode.status({ fill: sysState === \"normal\" ? \"green\" : sysState === \"warning\" ? \"orange\" : \"red\", shape: \"dot\", text: statusText });\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 180,
+        "wires": [
+            [
+                "465db2ea43b9bb53",
+                "cd97a78245ed03b5"
+            ]
+        ]
+    },
+    {
+        "id": "a52beea9e11f07c7",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "Uppdatera INIT (V12.8)",
+        "func": "// INIT V13.3 - Cycle Protection & Configurable Regulation\nlet config = {\n    // --- TARIFF & BUDGET ---\n    target_ghost: 5.0,\n    target_normal: 11.0,\n\n    // --- SÄKRINGSSKYDD ---\n    fuse_limit_warning: 110,\n    fuse_limit_critical: 120,\n    fuse_hysteresis_temp: 5, \n\n    // --- TESLA ---\n    tesla_min: 5,\n    tesla_max: 16,\n    tesla_phases: [1,2,3],\n\n    // --- SKYDDSMEKANISMER (NYHET) ---\n    protection: {\n        min_off_minutes: 10,      // \"Short Cycle Protection\": Tid att vänta efter STOPP innan START (minuter)\n        ev_regulation_sec: 30     // \"Rate Limit\": Minsta tid mellan Ampere-ändringar (sekunder)\n    },\n\n    // --- REGLERING ---\n    hysteresis_buffer: 1200, // Sänkt till 1200W för att värmen ska starta lättare\n    safety_margin: 800,      // Avståndet till taket\n    tesla_step_min: 1,       // 2A steg för lugnare gång\n    router_retry_ms: 60000, \n\n    // --- LAST-DEFINITIONER ---\n    loads_config: {\n        vvb: { watts: 3000, phases: [2,3] }, \n        rad: { watts: 3500, phases: [2,3] }, \n        avf: { watts: 500,  phases: [1] }\n    },\n\n    // --- TEMPERATUR-GRÄNSER (Ghost Mode) ---\n    temp_limits: {\n        critical: 19.0, \n        cold: 21.0      \n    },\n\n    // --- PRIORITERING ---\n    prio: {\n        ghost: {\n            rad_critical: 100, rad_cold: 60, rad_warm: 20,\n            vvb: 50,\n            tesla_panic: 50, tesla_normal: 0,\n            avf: -1\n        },\n        normal: {\n            rad: 60,\n            vvb_prio: 55, vvb_yield: 55,\n            tesla_panic: 95, tesla_normal: 90,\n            avf: 50\n        }\n    }\n};\n\n// 1. Spara config\nflow.set(\"sips_config\", config);\n\n// 2. Hantera State (Smart uppdatering)\nlet state = flow.get(\"sips_state\");\n\nif (!state) {\n    state = {\n        tesla: { amps: 0, actual_amps: 0, state: \"unknown\", geofence: \"unknown\", max_amps_dynamic: config.tesla_max, charge_limit: 80 },\n        loads: {},\n        grid: { l1: 0, l2: 0, l3: 0, power: 0 },\n        fuse: { l1: 0, l2: 0, l3: 0, max: 0 },\n        sim: { temp: 21.0, lastUpdate: Date.now() },\n        api: { count: 0, month: new Date().getMonth() },\n        history: {} // NYHET: För att minnas när vi stängde av saker\n    };\n    node.warn(\"Initialized New State\");\n}\n\n// 3. SYNKRONISERA\nif (!state.loads) state.loads = {};\nif (!state.history) state.history = {};\n\nfor (let key in config.loads_config) {\n    if (!state.loads[key]) {\n        state.loads[key] = { status: \"off\", prio: 50 };\n    }\n    // Initiera historik om den saknas\n    if (!state.history[key]) state.history[key] = { lastStop: 0, lastStart: 0 };\n    \n    state.loads[key].phases = config.loads_config[key].phases;\n    state.loads[key].watts = config.loads_config[key].watts;\n}\nif (!state.history.tesla) state.history.tesla = { lastStop: 0, lastStart: 0, lastRegulate: 0 };\n\nflow.set(\"sips_state\", state);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24bbf6da4dc3bccc",
+        "type": "inject",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "MANUAL INIT",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "a52beea9e11f07c7"
+            ]
+        ]
+    },
+    {
+        "id": "a8726aa5f03d58ef",
+        "type": "inject",
+        "z": "3eed00b8c7a9ef73",
+        "g": "cf8bf0b14e7e4aa4",
+        "name": "Startup",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "a52beea9e11f07c7"
+            ]
+        ]
+    },
+    {
+        "id": "465db2ea43b9bb53",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "5192e703de6729fe",
+        "name": "ROUTER (V12.8)",
+        "func": "let plan = msg.plan;\nlet sips = flow.get(\"sips_state\");\nlet config = flow.get(\"sips_config\") || {}; // Hämta config\n\n// Hämta Retry-tid från config, eller använd 60 sek som fallback\nconst COMMAND_TTL = config.router_retry_ms || 60000;\n\n// --- 1. HÄMTA ROUTER-MINNE ---\nlet routerStore = context.get(\"routerStore\") || { \n    lastState: \"\", \n    lastTs: 0,\n    devices: {} \n};\n\nlet now = Date.now();\n\n// --- 2. STATUS-RBE ---\nlet sendStatus = false;\nconst HEARTBEAT_MS = 300000; \n\nif (msg.systemState !== routerStore.lastState) sendStatus = true;\nelse if ((now - routerStore.lastTs) > HEARTBEAT_MS) sendStatus = true;\n\nlet statusMsg = null;\nif (sendStatus) {\n    statusMsg = { topic: \"homey/system/state\", payload: msg.systemState, qos: 1 };\n    routerStore.lastState = msg.systemState;\n    routerStore.lastTs = now;\n}\n\n// --- 3. KOMMANDO-RBE (Med Configurable Retry) ---\nlet mqttMsgs = [];\n\nif (plan) {\n    // Sortera: Set före Start\n    plan.sort((a,b) => {\n        const order = { \"set\": 1, \"start\": 2, \"stop\": 3, \"off\": 4, \"on\": 5 };\n        return (order[a.action] || 99) - (order[b.action] || 99);\n    });\n\n    plan.forEach(cmd => {\n        let cmdValue = cmd.value !== undefined ? cmd.value : \"\";\n        let cmdSignature = `${cmd.action}_${cmdValue}`;\n        let deviceId = cmd.id;\n\n        let lastEntry = routerStore.devices[deviceId] || { cmd: \"\", ts: 0 };\n\n        // SPAM FILTER: Skicka om nytt kommando ELLER tiden gått ut (TTL)\n        if (lastEntry.cmd !== cmdSignature || (now - lastEntry.ts) > COMMAND_TTL) {\n            \n            routerStore.devices[deviceId] = { cmd: cmdSignature, ts: now };\n\n            if (cmd.id === \"tesla\") {\n                if (cmd.action === \"set\")   mqttMsgs.push({ topic: \"homey/input/tesla_set_amps\", payload: cmd.value.toString() });\n                if (cmd.action === \"start\") mqttMsgs.push({ topic: \"homey/input/tesla_start\", payload: \"true\" });\n                if (cmd.action === \"stop\")  mqttMsgs.push({ topic: \"homey/input/tesla_stop\", payload: \"true\" });\n            } else {\n                let topic = \"\";\n                if (cmd.id === \"vvb\") topic = \"shellies/vvb1/relay/0/command\";\n                if (cmd.id === \"rad\") topic = \"shellies/rad1/relay/0/command\";\n                if (cmd.id === \"avf\") topic = \"shellies/avf1/relay/0/command\";\n                \n                if (topic) node.send([null, { topic: topic, payload: cmd.action, qos: 1 }, null]);\n            }\n        }\n    });\n}\n\ncontext.set(\"routerStore\", routerStore);\n\n// --- 4. UTGÅNGAR ---\nlet storageMsg = null;\nlet teslaActive = mqttMsgs.some(m => m.topic.includes(\"tesla\"));\n\nif (teslaActive && plan && plan.find(p => p.id === \"tesla\")) {\n    storageMsg = { topic: \"system/sips/storage\", payload: JSON.stringify({c: sips.api.count, m: sips.api.month}), retain: true, qos: 1 };\n}\n\nlet misc = [];\nif (statusMsg) misc.push(statusMsg);\nif (storageMsg) misc.push(storageMsg);\n\nif (mqttMsgs.length === 0 && misc.length === 0) return null;\n\nreturn [mqttMsgs, null, misc];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1530,
+        "y": 120,
+        "wires": [
+            [
+                "86691c8d33a02da5",
+                "f2183dc2955be820"
+            ],
+            [
+                "fa8fa39964d2d08e",
+                "f2183dc2955be820"
+            ],
+            [
+                "fa8fa39964d2d08e",
+                "f2183dc2955be820"
+            ]
+        ]
+    },
+    {
+        "id": "86691c8d33a02da5",
+        "type": "delay",
+        "z": "3eed00b8c7a9ef73",
+        "g": "5192e703de6729fe",
+        "name": "Tesla Rate Limit",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1940,
+        "y": 100,
+        "wires": [
+            [
+                "fa8fa39964d2d08e",
+                "f2183dc2955be820"
+            ]
+        ]
+    },
+    {
+        "id": "fa8fa39964d2d08e",
+        "type": "mqtt out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "5192e703de6729fe",
+        "name": "MQTT OUT",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fa6a33cd942a9c83",
+        "x": 2130,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f2183dc2955be820",
+        "type": "debug",
+        "z": "3eed00b8c7a9ef73",
+        "g": "5192e703de6729fe",
+        "name": "Router Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "0e5b7cfa1c0ca96c",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "VVB",
+        "measurement": "homey/logic/vvb",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2170,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5e6e102b39c894df",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Radiators",
+        "measurement": "homey/logic/radiators",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "6c022f6774a4cc71",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Avfuktare",
+        "measurement": "homey/logic/avf",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "6977b02bb44346ff",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Tesla Req",
+        "measurement": "tesla/charge/current/request",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "50168a41b8f03124",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Fuse L1",
+        "measurement": "fuse_temp_L1",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "06b187955acb7b86",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Fuse L2",
+        "measurement": "fuse_temp_L2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "63ca7cd6919362ff",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Fuse L3",
+        "measurement": "fuse_temp_L3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "0fddf1d214b7d01d",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Tesla Max",
+        "measurement": "tesla/charge_current_request_max",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "f4994743ff5ad18b",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "API Count",
+        "measurement": "tesla/control_counter",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2180,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "d73df6f2d0a9ded5",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "Extract Total_Power",
+        "func": "// Extract power from grid JSON\nlet data = msg.payload;\nif (typeof data === \"string\") try { data = JSON.parse(data); } catch(e) {}\nif (data.metrics && data.metrics.Power_Total !== undefined) {\n    return { payload: parseFloat(data.metrics.Power_Total) };\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 580,
+        "wires": [
+            [
+                "2a2cdbd33c3741bf"
+            ]
+        ]
+    },
+    {
+        "id": "2a2cdbd33c3741bf",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/123/power",
+        "measurement": "RPI_shelly/3em/123/power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1440,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "eeb2e66b55d708c4",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/0/current",
+        "measurement": "RPI_shelly/3em/0/current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1440,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "57687425891251a8",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/1/current",
+        "measurement": "RPI_shelly/3em/1/current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1440,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "88d2c26357c74df6",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/2/current",
+        "measurement": "RPI_shelly/3em/2/current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1440,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "f32dacf6932d3251",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "Extract Currents",
+        "func": "let data = msg.payload;\nif (typeof data === \"string\") try { data = JSON.parse(data); } catch(e) {}\nif (!data.metrics) return null;\n\nfunction get(val) { return { payload: parseFloat(val) }; }\nreturn [get(data.metrics.Current_L1), get(data.metrics.Current_L2), get(data.metrics.Current_L3)];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 640,
+        "wires": [
+            [
+                "eeb2e66b55d708c4"
+            ],
+            [
+                "57687425891251a8"
+            ],
+            [
+                "88d2c26357c74df6"
+            ]
+        ]
+    },
+    {
+        "id": "70af6cc2a74a0b8c",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "Extract Power",
+        "func": "let data = msg.payload;\nif (typeof data === \"string\") try { data = JSON.parse(data); } catch(e) {}\nif (!data.metrics) return null;\n\nfunction get(val) { return { payload: parseFloat(val) }; }\nreturn [get(data.metrics.Power_L1), get(data.metrics.Power_L2), get(data.metrics.Power_L3)];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 740,
+        "wires": [
+            [
+                "13a8b24575162bc0"
+            ],
+            [
+                "611df54fa9d4dae1"
+            ],
+            [
+                "ccb70e46e6a58ebf"
+            ]
+        ]
+    },
+    {
+        "id": "13a8b24575162bc0",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/0/power",
+        "measurement": "RPI_shelly/3em/0/power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1430,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "611df54fa9d4dae1",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/1/power",
+        "measurement": "RPI_shelly/3em/1/power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1430,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "ccb70e46e6a58ebf",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "shelly/3em/2/power",
+        "measurement": "RPI_shelly/3em/2/power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1430,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "3d6eb74669a18ef6",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "tesla/charger_actual_current",
+        "measurement": "tesla/charger_actual_current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1400,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "cd97a78245ed03b5",
+        "type": "function",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "Format Influx Data",
+        "func": "let sips = msg.sips;\nlet log = sips.log || {};\nfunction safe(val) { return (val === undefined || val === null || isNaN(val)) ? 0 : val; }\n\nlet vvb = sips.loads.vvb.status === \"on\" ? 1 : 0;\nlet rad = sips.loads.rad.status === \"on\" ? 1 : 0;\nlet avf = sips.loads.avf.status === \"on\" ? 1 : 0;\n\nreturn [\n    { payload: vvb },                          \n    { payload: rad },                          \n    { payload: avf },                          \n    { payload: safe(sips.tesla.amps) },        \n    { payload: safe(sips.fuse.l1) },           \n    { payload: safe(sips.fuse.l2) },           \n    { payload: safe(sips.fuse.l3) },           \n    { payload: safe(sips.tesla.max_amps_dynamic) }, \n    { payload: safe(sips.api.count) },         \n    { payload: safe(log.limit) },              \n    { payload: safe(log.used) },               \n    { payload: safe(log.target) },             \n    { payload: safe(log.ghost) }               \n];",
+        "outputs": 13,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 900,
+        "wires": [
+            [
+                "0e5b7cfa1c0ca96c"
+            ],
+            [
+                "5e6e102b39c894df"
+            ],
+            [
+                "6c022f6774a4cc71"
+            ],
+            [
+                "6977b02bb44346ff"
+            ],
+            [
+                "50168a41b8f03124"
+            ],
+            [
+                "06b187955acb7b86"
+            ],
+            [
+                "63ca7cd6919362ff"
+            ],
+            [
+                "0fddf1d214b7d01d"
+            ],
+            [
+                "f4994743ff5ad18b"
+            ],
+            [
+                "6c59a443ece883cd"
+            ],
+            [
+                "a247090378a4af0d"
+            ],
+            [
+                "4e3e690d57655ee6"
+            ],
+            [
+                "4bca7de47a6d27af"
+            ]
+        ]
+    },
+    {
+        "id": "6c59a443ece883cd",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Limit",
+        "measurement": "strategy/power_limit",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2190,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "a247090378a4af0d",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Used",
+        "measurement": "strategy/energy_used",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2190,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "4e3e690d57655ee6",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Target",
+        "measurement": "strategy/energy_target",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2190,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "4bca7de47a6d27af",
+        "type": "influxdb out",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "influxdb": "8d24e520361b7e2c",
+        "name": "Ghost",
+        "measurement": "strategy/ghost_mode",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 2190,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "0c71c68108e3e3d0",
+        "type": "change",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "To Number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 860,
+        "wires": [
+            [
+                "3d6eb74669a18ef6"
+            ]
+        ]
+    },
+    {
+        "id": "2817ca236b7f0e41",
+        "type": "change",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "To Number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1830,
+        "y": 660,
+        "wires": [
+            [
+                "6977b02bb44346ff"
+            ]
+        ]
+    },
+    {
+        "id": "c76b79cbfb75d583",
+        "type": "change",
+        "z": "3eed00b8c7a9ef73",
+        "g": "d4250ce404ec61b6",
+        "name": "To Number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1150,
+        "y": 940,
+        "wires": [
+            [
+                "0fddf1d214b7d01d"
+            ]
+        ]
+    },
+    {
+        "id": "fa6a33cd942a9c83",
+        "type": "mqtt-broker",
+        "name": "RPI",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8d24e520361b7e2c",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "sensors",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    }
+]
